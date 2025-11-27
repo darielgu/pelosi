@@ -50,9 +50,39 @@ def quiver_quant_scraper():
 
         # ----- COLUMN 2: TRANSACTION DATE -----
         action_date = tds[2].text.strip()
+        action_date = action_date.replace(", ", "-").replace(" ", "-")
+        action_date = (
+            action_date.replace("Jan", "01")
+            .replace("Feb", "02")
+            .replace("Mar", "03")
+            .replace("Apr", "04")
+            .replace("May", "05")
+            .replace("Jun", "06")
+            .replace("Jul", "07")
+            .replace("Aug", "08")
+            .replace("Sep", "09")
+            .replace("Oct", "10")
+            .replace("Nov", "11")
+            .replace("Dec", "12")
+        )
 
         # ----- COLUMN 3: FILED DATE -----
         announce_date = tds[3].text.strip()
+        announce_date = announce_date.replace(", ", "-").replace(" ", "-")
+        announce_date = (
+            announce_date.replace("Jan", "01")
+            .replace("Feb", "02")
+            .replace("Mar", "03")
+            .replace("Apr", "04")
+            .replace("May", "05")
+            .replace("Jun", "06")
+            .replace("Jul", "07")
+            .replace("Aug", "08")
+            .replace("Sep", "09")
+            .replace("Oct", "10")
+            .replace("Nov", "11")
+            .replace("Dec", "12")
+        )
 
         results.append(
             {
@@ -67,6 +97,7 @@ def quiver_quant_scraper():
         )
 
     print(results)
+    return results
 
 
 if __name__ == "__main__":
