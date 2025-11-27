@@ -1,12 +1,9 @@
-import json
 import time
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 
 
@@ -40,7 +37,7 @@ def quiver_quant_scraper():
 
         # ----- COLUMN 0: TICKER + COMPANY + ASSET TYPE -----
         img = tds[0].find_element(By.TAG_NAME, "img")
-        ticker = img.get_attribute("alt").split()[0]
+        ticker = img.get_attribute("alt").split()[0]  # type: ignore
 
         flex = tds[0].find_element(By.CSS_SELECTOR, ".flex-column")
         t0_lines = flex.text.split("\n")
