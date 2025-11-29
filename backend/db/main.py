@@ -8,4 +8,4 @@ key = os.getenv("SUPA_KEY")
 url = os.getenv("SUPA_URL")
 
 
-supa_client = create_client(supabase_url=url, supabase_key=key)
+supa_client = create_client(supabase_url=url, supabase_key=key)  # type: ignore
