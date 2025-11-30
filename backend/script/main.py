@@ -1,7 +1,11 @@
+from db.main import supa_client
 from services.insertion import scraper_into_db_cron
+
+DC = "us22"
 
 
 def run_job():
+    emails = supa_client.from_("emails").select("*").execute()
     new_trades = scraper_into_db_cron()
     email_template = "Hello,\n\nThe latest Pelosi trades have been scraped and inserted into the database. Here are the new trades:\n\n"
     if len(new_trades) <= 0:
@@ -12,6 +16,7 @@ def run_job():
         for trade in new_trades:
             email_template += f"- {trade['ticker']} | {trade['company']} | {trade['action']} | {trade['amount']} | {trade['action_date']}\n"
     email_template += "\nBest regards,\nPelosi Tracker Bot"
+
     print(email_template)
 
 

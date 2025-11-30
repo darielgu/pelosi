@@ -77,7 +77,7 @@ const page = () => {
           router.push("/");
         }}
       />
-      <div className="container mx-auto px-4 py-12 md:py-20 max-w-6xl">
+      <div className="container mx-auto px-4 py-12 md:py-20 max-w-6xl mt-10">
         <div className="space-y-12">
           {/* Header Section */}
           <div className="text-center space-y-4 mt-10">
