@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Pelosi Bot",
   description: "never miss another Pelosi trade.",
+  icons: {
+    icon: "/pelosi.png",
+  },
 };
 
 export default function RootLayout({
