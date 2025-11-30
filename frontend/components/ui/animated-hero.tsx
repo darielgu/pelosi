@@ -4,11 +4,35 @@ import { MoveRight, PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { InteractiveHoverButton } from "./interactive-hover-button";
+import { Loader } from "@/components/ui/loader";
 import { useId } from "react";
+import { useRouter } from "next/navigation";
 
 function Hero({}) {
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [responseMessage, setResponseMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   async function handleSubscribe(email: string) {
-    console.log(`Subscribing ${email}`);
+    try {
+      setLoading(true);
+      const response = await fetch("/api/user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.message || "Something went wrong");
+      }
+      setResponseMessage(data.message);
+    } catch (error: any) {
+      setResponseMessage(error.message);
+    } finally {
+      setLoading(false);
+    }
   }
 
   const id = useId();
@@ -79,20 +103,30 @@ function Hero({}) {
                 className="flex-1"
                 placeholder="Email"
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <Button
                 variant="default"
                 color="black"
+                className="hover:cursor-pointer"
                 size="sm"
-                onClick={() => console.log("subscribed")}
+                onClick={() => handleSubscribe(email)}
               >
                 Subscribe
               </Button>
             </div>
           </div>
+          {loading && <Loader />}
+          {responseMessage && (
+            <p className="text-slate-700 mt-2">{responseMessage}</p>
+          )}
 
           <div className="flex gap-4 justify-center mt-8">
-            <InteractiveHoverButton text="View Trades" onClick={() => {}} />
+            <InteractiveHoverButton
+              text="View Trades"
+              onClick={() => router.push("/trades")}
+            />
           </div>
         </div>
       </div>

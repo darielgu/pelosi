@@ -10,7 +10,7 @@ export default function Home() {
         alt="Pelosi"
         width={200}
         height={200}
-        className="position absolute left-0 top-0 "
+        className="position absolute left-0 top-0  hover:cursor-pointer"
       />
       <BackgroundPlus className="-z-1" />
       <Hero />
