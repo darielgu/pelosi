@@ -14,7 +14,7 @@ def run_job():
         print(f"Inserted {len(new_trades)} new trades.")
         for trade in new_trades:
             email_template += f"- {trade['ticker']} | {trade['company']} | {trade['action']} | {trade['amount']} | {trade['action_date']}\n"
-    email_template += "\nBest regards,\nPelosi Tracker Bot"
+    email_template += "\n\nBest regards,\nPelosi Tracker Bot"
     print(email_template)
 
     recipients = []
