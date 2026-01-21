@@ -99,7 +99,10 @@ const page = () => {
               searchable={false}
             />
           ) : (
-            <h1>No trades available</h1>
+            <h1>
+              Took the live database down unfortunately. Ping me if you want
+              access.
+            </h1>
           )}
         </div>
       </div>
