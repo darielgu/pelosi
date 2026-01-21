@@ -91,12 +91,16 @@ const page = () => {
           </div>
 
           {/* Trades Table */}
-          <DataTable
-            data={data2}
-            columns={columns}
-            itemsPerPage={10}
-            searchable={false}
-          />
+          {data2.length > 0 ? (
+            <DataTable
+              data={data2}
+              columns={columns}
+              itemsPerPage={10}
+              searchable={false}
+            />
+          ) : (
+            <h1>No trades available</h1>
+          )}
         </div>
       </div>
     </div>
